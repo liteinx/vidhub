@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Blaze — Stream in Style | Red & Pink Vibe</title>
+  <!-- Google Fonts + modern font stack -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: #0a0406;
+      color: #fff0f2;
+      line-height: 1.4;
+      scroll-behavior: smooth;
+    }
+
+    /* fiery gradient background with red/pink aura */
+    .bg-aura {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: radial-gradient(circle at 30% 20%, #1e0408, #030001);
+    }
+
+    .bg-aura::after {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: radial-gradient(circle at 60% 70%, rgba(255, 45, 85, 0.25), rgba(255, 20, 60, 0.1) 50%, transparent 80%);
+      animation: slowBurn 20s infinite alternate ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes slowBurn {
+      0% { transform: translate(0%, 0%) scale(1); opacity: 0.6; }
+      100% { transform: translate(5%, 8%) scale(1.25); opacity: 1; }
+    }
+
+    /* sleek container */
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2rem 2rem 4rem;
+      position: relative;
+      backdrop-filter: blur(1.5px);
+    }
+
+    /* header / nav */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 80, 100, 0.25);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FF3B6F, #FF1E4D, #FF8A9F);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .logo i {
+      background: linear-gradient(145deg, #FF4D6D, #FF1E3C);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 2rem;
+    }
+
+    .cta-badge {
+      background: rgba(255, 45, 85, 0.12);
+      backdrop-filter: blur(12px);
+      padding: 0.65rem 1.6rem;
+      border-radius: 200px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 60, 100, 0.6);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #FFB7C5;
+    }
+
+    .cta-badge i {
+      font-size: 1rem;
+      color: #FF4D6D;
+    }
+
+    .cta-badge:hover {
+      background: rgba(255, 45, 85, 0.3);
+      border-color: #FF3B6F;
+      cursor: pointer;
+      transform: scale(1.02);
+      color: white;
+    }
+
+    /* hero section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 4.5rem;
+    }
+
+    .hero-text {
+      flex: 1.2;
+    }
+
+    .hero-badge {
+      background: rgba(255, 45, 85, 0.2);
+      border-radius: 40px;
+      padding: 0.3rem 1.2rem;
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 1.2rem;
+      backdrop-filter: blur(4px);
+      border: 0.5px solid rgba(255, 70, 110, 0.7);
+      color: #FFB0BE;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.2;
+      background: linear-gradient(to right, #FFFFFF, #FF8AAE, #FF3B6F);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: #FECAD2;
+      max-width: 550px;
+      margin-bottom: 2rem;
+    }
+
+    .download-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-download {
+      background: linear-gradient(105deg, #E31B4B, #FF2E63);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 44px;
+      font-weight: 800;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 22px rgba(227, 27, 75, 0.4);
+      cursor: pointer;
+    }
+
+    .btn-download i {
+      font-size: 1.3rem;
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(105deg, #FF2E63, #FF1E4D);
+      box-shadow: 0 20px 30px -8px rgba(255, 30, 77, 0.6);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid rgba(255, 60, 100, 0.8);
+      box-shadow: none;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 45, 85, 0.2);
+      border-color: #FF4D6D;
+      transform: translateY(-2px);
+    }
+
+    /* thumbnail showcase grid */
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin: 2.5rem 0 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      background: rgba(255, 45, 85, 0.25);
+      padding: 8px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      color: #FF6B8F;
+    }
+
+    .thumb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .thumb-card {
+      background: rgba(20, 6, 10, 0.7);
+      backdrop-filter: blur(14px);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      border: 1px solid rgba(255, 70, 110, 0.3);
+      box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.6);
+    }
+
+    .thumb-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 60, 100, 0.8);
+      box-shadow: 0 28px 38px -16px rgba(227, 27, 75, 0.4);
+    }
+
+    .thumb-img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #2d0a14;
+    }
+
+    .thumb-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      display: block;
+    }
+
+    .thumb-card:hover .thumb-img img {
+      transform: scale(1.05);
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(227, 27, 75, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .thumb-card:hover .play-overlay {
+      opacity: 1;
+    }
+
+    .play-overlay i {
+      font-size: 3rem;
+      background: white;
+      border-radius: 60px;
+      padding: 12px;
+      color: #E31B4B;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+    }
+
+    .card-info {
+      padding: 1.2rem 1.2rem 1.4rem;
+    }
+
+    .card-info h3 {
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+      color: #FFEFF2;
+    }
+
+    .card-info p {
+      font-size: 0.85rem;
+      color: #FFB7C5;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .trend-badge {
+      background: rgba(255, 45, 85, 0.3);
+      border-radius: 30px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #FFB0C3;
+    }
+
+    /* app banner hot pink / red */
+    .app-banner {
+      background: linear-gradient(125deg, rgba(227, 27, 75, 0.25), rgba(30, 5, 12, 0.95));
+      border-radius: 2rem;
+      padding: 2rem 2rem;
+      margin: 3rem 0 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      border: 1px solid rgba(255, 60, 100, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    .banner-text h3 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #FFE3E8;
+    }
+    .banner-text h3 i {
+      color: #FF4D6D;
+      margin-right: 8px;
+    }
+
+    .banner-text p {
+      color: #FFC0CC;
+      margin-top: 0.3rem;
+    }
+
+    .banner-btn {
+      background: linear-gradient(105deg, #FF2E63, #E31B4B);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 800;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 5px 14px rgba(227, 27, 75, 0.5);
+    }
+
+    .banner-btn i {
+      font-size: 1.4rem;
+    }
+
+    .banner-btn:hover {
+      background: linear-gradient(105deg, #FF4D6D, #FF1E4D);
+      transform: scale(1.02);
+      gap: 16px;
+    }
+
+    footer {
+      margin-top: 4rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #E394A8;
+      border-top: 1px solid rgba(255, 80, 110, 0.2);
+      padding-top: 2rem;
+    }
+
+    /* toast notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.9);
+      background: #1F0B12;
+      backdrop-filter: blur(24px);
+      padding: 12px 28px;
+      border-radius: 80px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #FFEFF2;
+      z-index: 999;
+      box-shadow: 0 12px 28px rgba(227, 27, 75, 0.3);
+      border-left: 5px solid #FF3B6F;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+      font-family: monospace;
+    }
+
+    .toast-msg.show {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+
+    @media (max-width: 750px) {
+      .container {
+        padding: 1.2rem;
+      }
+      .hero-text h1 {
+        font-size: 2.4rem;
+      }
+      .thumb-grid {
+        gap: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="bg-aura"></div>
+<div class="container">
+  <!-- red-pink navigation -->
+  <div class="navbar">
+    <div class="logo">
+      <i class="fas fa-fire"></i>
+      <span>BLAZE</span>
+    </div>
+    <div class="cta-badge" id="navDownloadBtn">
+      <i class="fas fa-mobile-alt"></i> Get the App
+    </div>
+  </div>
+
+  <!-- hero + fiery download pitch -->
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <i class="fas fa-bolt"></i> Hot drops · Unlimited passion
+      </div>
+      <h1>Feel the heat.<br>Stream in red.</h1>
+      <p>Immerse yourself in exclusive series, heart-racing originals, and cinema-grade thrills. Get the Blaze app now and ignite your watchlist — 7 days fiery trial.</p>
+      <div class="download-buttons">
+        <button class="btn-download" id="heroDownloadBtn">
+          <i class="fab fa-apple"></i> App Store
+        </button>
+        <button class="btn-download btn-outline" id="heroAndroidBtn">
+          <i class="fab fa-google-play"></i> Google Play
+        </button>
+      </div>
+    </div>
+    <!-- dramatic graphic -->
+    <div style="flex: 0.7; min-width: 160px;">
+      <div style="background: radial-gradient(ellipse at 50% 50%, #FF2E6340, transparent); padding: 1rem; border-radius: 48px;">
+        <i class="fas fa-play-circle" style="font-size: 7rem; opacity: 0.85; color: #FF4D6D; filter: drop-shadow(0 0 12px #FF1E4D); display: block; text-align: center;"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- thumbnails section with red-pink vibe -->
+  <div class="section-title">
+    <i class="fas fa-fire"></i>
+    <span>Sizzling now · exclusive previews</span>
+  </div>
+  <div class="thumb-grid" id="thumbGrid"></div>
+
+  <!-- app banner strong conversion with red/pink gradient -->
+  <div class="app-banner">
+    <div class="banner-text">
+      <h3><i class="fas fa-gem"></i> Blaze+ Membership</h3>
+      <p>Offline mode, HDR10+, and unlimited downloads. Only inside our official app. Join the movement.</p>
+    </div>
+    <button class="banner-btn" id="bannerDownloadBtn">
+      <i class="fas fa-download"></i> Install Now
+    </button>
+  </div>
+
+  <footer>
+    <p>© 2025 Blaze Streaming — where stories burn bright. All rights reserved.</p>
+    <p style="margin-top: 8px;"><i class="fas fa-heart" style="color:#FF4D6D;"></i> 4K HDR | No ads on mobile app</p>
+  </footer>
+</div>
+
+<div id="toastMsg" class="toast-msg">🔥 Download Blaze app — unlock hot exclusives & offline mode!</div>
+
+<script>
+  // video library with red/pink compatible content
+  const videoShows = [
+    {
+      title: "Crimson Nights",
+      category: "Romantic Thriller",
+      duration: "2h 8m",
+      trending: true,
+      thumb: "imgs/577428788_25140873762175745_3363794548624922022_n.jpg", // sunset
+      alt: "red sunset vibe"
+    },
+    {
+      title: "Heartbeat Assault",
+      category: "Action · Drama",
+      duration: "1h 52m",
+      trending: true,
+      thumb: "imgs/616503534_25541430215512987_4318403444541543260_n.jpg",
+      alt: "neon red city"
+    },
+    {
+      title: "Rose & Rebellion",
+      category: "Historical Epic",
+      duration: "2h 45m",
+      trending: false,
+      thumb: "imgs/617554289_26263166996640249_8981339668643136386_n.jpg",
+      alt: "passionate portrait"
+    },
+    {
+      title: "Velvet Vengeance",
+      category: "Crime · Noir",
+      duration: "1h 58m",
+      trending: true,
+      thumb: "imgs/618367909_3396011193885617_2046707013779919149_n.jpg",
+      alt: "dark red theme"
+    },
+    {
+      title: "Scarlet Echo",
+      category: "Sci-Fi · Mystery",
+      duration: "2h 22m",
+      trending: false,
+      thumb: "imgs/621170233_25742788268695851_2633909370692247043_n.jpg",
+      alt: "flower red"
+    },
+    {
+      title: "Inferno Hearts",
+      category: "Rom-Com",
+      duration: "1h 47m",
+      trending: true,
+      thumb: "imgs/622909457_25414890114870674_1274296447032806637_n.jpg",
+      alt: "couple coffee"
+    }
+  ];
+
+  const thumbGrid = document.getElementById('thumbGrid');
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) { return c; });
+  }
+
+  function renderThumbnails() {
+    if (!thumbGrid) return;
+    thumbGrid.innerHTML = '';
+    videoShows.forEach(show => {
+      const card = document.createElement('div');
+      card.className = 'thumb-card';
+      card.innerHTML = `
+        <div class="thumb-img">
+          <img src="${show.thumb}" alt="${show.alt || show.title}" loading="lazy">
+          <div class="play-overlay">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3>${escapeHtml(show.title)}</h3>
+          <p>
+            <span><i class="far fa-clock"></i> ${show.duration}</span>
+            <span class="trend-badge" style="${!show.trending ? 'background:rgba(255,80,100,0.2);' : ''}">
+              ${show.trending ? '<i class="fas fa-chart-line"></i> Trending 🔥' : 'Fresh pick'}
+            </span>
+          </p>
+          <p style="margin-top: 8px; font-size:0.75rem;"><i class="fas fa-tag"></i> ${escapeHtml(show.category)}</p>
+        </div>
+      `;
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showDownloadPrompt(`❤️‍🔥 "${show.title}" is exclusive to the Blaze app — get it now!`);
+      });
+      thumbGrid.appendChild(card);
+    });
+  }
+
+  let toastTimeout;
+  function showToast(message) {
+    const toast = document.getElementById('toastMsg');
+    if (!toast) return;
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toast.textContent = message || '📱 Download Blaze app for full access & 4K offline mode!';
+    toast.classList.add('show');
+    toastTimeout = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2800);
+  }
+
+  function handleDownloadClick(source = 'generic') {
+    console.log(`🔥 download intent from ${source}`);
+    showToast('⚡ Get the Blaze app now — unlimited fiery streaming, exclusive series!');
+    // Optional: future redirect link
+  }
+
+  function showDownloadPrompt(customMsg) {
+    showToast(customMsg || '✨ Download Blaze — watch trending shows in stunning red-pink style');
+  }
+
+  // attach event listeners
+  document.getElementById('heroDownloadBtn')?.addEventListener('click', () => handleDownloadClick('hero_ios'));
+  document.getElementById('heroAndroidBtn')?.addEventListener('click', () => handleDownloadClick('hero_android'));
+  document.getElementById('navDownloadBtn')?.addEventListener('click', () => handleDownloadClick('nav_bar'));
+  document.getElementById('bannerDownloadBtn')?.addEventListener('click', () => handleDownloadClick('banner_cta'));
+
+  renderThumbnails();
+
+  // extra micro style for cards
+  const extraStyle = document.createElement('style');
+  extraStyle.textContent = `
+    .thumb-card {
+      cursor: pointer;
+    }
+    .thumb-card:active {
+      transform: scale(0.97);
+    }
+    .btn-download, .cta-badge, .banner-btn {
+      cursor: pointer;
+    }
+    ::selection {
+      background: #FF3B6F;
+      color: white;
+    }
+  `;
+  document.head.appendChild(extraStyle);
+</script>
+</body>
+</html>
